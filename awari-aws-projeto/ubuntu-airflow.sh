@@ -66,9 +66,9 @@ airflow connections add 'pg_awari' \
         "schema": "awari_imdb"
     }'
 
-airflow variables set AWS_ACCESS_KEY_ID AKIA4ICVX2KTQTJABQWR
+airflow variables set AWS_ACCESS_KEY_ID INFORME_AWS_ACCESS_KEY_ID
 airflow variables set AWS_REGION sa-east-1
-airflow variables set AWS_SECRET_ACCESS_KEY tIdcAd7mjGx00s3q1amERdnoCCWci7/gKYVeW6wl
+airflow variables set AWS_SECRET_ACCESS_KEY INFORME_AWS_SECRET_ACCESS_KEY
 airflow variables set AWS_BUCKET awari-de-nome-do-aluno
 
 airflow webserver -D
