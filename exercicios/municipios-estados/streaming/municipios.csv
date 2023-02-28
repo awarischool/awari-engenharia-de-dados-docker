@@ -1,0 +1,3 @@
+codigo_ibge,nome,latitude,longitude,capital,codigo_uf,siafi_id,ddd,fuso_horario
+9900001,Minha cidade 1,-16.7573,-49.4412,0,52,1050,100,America/Sao_Paulo
+9900002,Minha cidade 2,-18.4831,-47.3916,0,31,4001,101,America/Sao_Paulo

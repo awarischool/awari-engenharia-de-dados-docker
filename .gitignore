@@ -1,0 +1,26 @@
+.history
+
+# Minio Folders
+data/minio/data*
+
+# Airflow Folders
+data/airflow/dags
+data/airflow/logs
+data/airflow/plugins
+data/airflow/downloads/*
+data/airflow/postgres-data
+
+#MongoDB
+data/mongodb/data
+
+# Postgresql Folders
+data/postgresql/data
+
+# python-app 
+python-app/aula-07/ingest/batch/*
+
+# metabase
+data/metabase/data
+
+# Jupyter Lab
+jupyter-notebooks/.ipynb_checkpoints
