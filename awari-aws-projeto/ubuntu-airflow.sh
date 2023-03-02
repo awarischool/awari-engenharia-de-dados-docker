@@ -66,10 +66,10 @@ airflow connections add 'pg_awari' \
         "schema": "awari_imdb"
     }'
 
-```airflow variables set AWS_ACCESS_KEY_ID SUA_CHAVE_AQUI
+airflow variables set AWS_ACCESS_KEY_ID SUA_CHAVE_AQUI
 airflow variables set AWS_REGION sa-east-1
 airflow variables set AWS_SECRET_ACCESS_KEY SUA_SECRET_AQUI
-airflow variables set AWS_BUCKET awari-de-nome-do-aluno```
+airflow variables set AWS_BUCKET awari-de-nome-do-aluno
 
 airflow webserver -D
 
