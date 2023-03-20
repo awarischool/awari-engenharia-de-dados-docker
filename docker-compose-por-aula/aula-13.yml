@@ -1,0 +1,49 @@
+version: '3.7'
+networks:
+  awari-pipelines:
+      driver: bridge
+      ipam:
+          driver: default
+          config:
+              - subnet: "172.18.0.0/16"
+                gateway: "172.18.0.1"
+
+services:
+
+  # Postgreql Service
+  awari-postgres:
+    image: postgres:15.2-alpine3.17
+    container_name: awari-postgres
+    ports:
+      - "5431:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      retries: 5
+    env_file:
+      - ../data/postgresql/.env
+    volumes:
+      - ../data/postgresql/data:/var/lib/postgresql/data
+      - ../data/postgresql/create-multiple-postgresql-databases.sh:/docker-entrypoint-initdb.d/01-create-db.sh
+    networks:
+      awari-pipelines:
+        ipv4_address: 172.18.0.6
+
+  #Metabase Service
+  metabase-app:
+    image: metabase/metabase:v0.45.3
+    restart: always
+    ports:
+      - 3001:3000
+    volumes:
+      # declare your mount volume /host/dir:/container/dir
+      - ../data/metabase/data:/metabase-data
+    env_file:
+      - ../data/metabase/.env
+    depends_on:
+      - awari-postgres
+    links:
+      - awari-postgres
+    networks:
+      awari-pipelines:
+        ipv4_address: 172.18.0.25

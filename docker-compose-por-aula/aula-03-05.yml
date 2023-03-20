@@ -1,0 +1,27 @@
+version: '3.7'
+networks:
+  awari-pipelines:
+      driver: bridge
+      ipam:
+          driver: default
+          config:
+              - subnet: "172.18.0.0/16"
+                gateway: "172.18.0.1"
+
+services:  
+  # Jupyter Lab Service
+  awari-jupyterlab:
+    build:
+      dockerfile: ../data/jupyterlab/Dockerfile
+    volumes:
+     - ../jupyter-notebooks/:/notebooks
+    ports:
+      - "8888:8888"
+      - "20020:20020"
+    environment:
+      - JUPYTER_ENABLE_LAB=1
+      - SPARK_MASTER_IP=127.0.0.1
+    command: start-notebook.sh --NotebookApp.notebook_dir=/notebooks --NotebookApp.token='' --NotebookApp.password=''
+    networks:
+      awari-pipelines:
+        ipv4_address: 172.18.0.10
