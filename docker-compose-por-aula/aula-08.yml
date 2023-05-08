@@ -115,3 +115,22 @@ services:
     networks:
       awari-pipelines:
         ipv4_address: 172.18.0.10
+
+  # Postgreql Service
+  awari-postgres:
+    image: postgres:15.2-alpine3.17
+    container_name: awari-postgres
+    ports:
+      - "5431:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      retries: 5
+    env_file:
+      - ../data/postgresql/.env
+    volumes:
+      - ../data/postgresql/data:/var/lib/postgresql/data
+      - ../data/postgresql/create-multiple-postgresql-databases.sh:/docker-entrypoint-initdb.d/01-create-db.sh
+    networks:
+      awari-pipelines:
+        ipv4_address: 172.18.0.6
