@@ -65,10 +65,13 @@ consumer = KafkaConsumer(
 # Começa a percorrer as mensagens encontradas no kafka
 for message in consumer:
     message = message.value
-    
+
+    message_df = pd.DataFrame(data=message, index=['id']) # Convertando a mensagem para um dataFrame
+    print(message_df)
+
     # Converte a mensage que esta em JSON para DataFrame
-    usuarios_df = usuarios_df.append(message, ignore_index=True)
+    usuarios_df = pd.concat([usuarios_df, message_df], ignore_index=True)
+
     # Salva como CSV no bucket
     response = save_key_to_s3(usuarios_df, key_usuarios)
     print(usuarios_df)
-

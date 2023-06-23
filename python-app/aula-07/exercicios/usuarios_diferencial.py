@@ -75,7 +75,7 @@ df = pd.read_csv(path)
 
 # Filtra os usuários com data em criado_em > que a data hora da ultima atualização
 usuarios_filtrados_por_data = df[df['criado_em'] > str(status_datetime_serie.iloc[0])]
-usuarios_df = usuarios_df.append(usuarios_filtrados_por_data)
+usuarios_df = pd.concat([usuarios_df, usuarios_filtrados_por_data], ignore_index=True)
 print(usuarios_df)
 
 # Pega a data do usuário mais recente

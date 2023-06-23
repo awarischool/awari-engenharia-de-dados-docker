@@ -13,7 +13,7 @@ RUN conda env create -f environment.yml
 RUN echo "source activate awari" > ~/.bashrc
 ENV PATH /opt/conda/envs/awari/bin:$PATH
 
-RUN pip install kafka-python pandas boto3 Faker
+RUN pip install kafka-python pandas==2.0.2 boto3 Faker
 
 EXPOSE 5001
 
