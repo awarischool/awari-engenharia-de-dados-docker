@@ -125,8 +125,7 @@ services:
         ipv4_address: 172.18.0.110
 
   awari-airflow-scheduler:
-    <<: *awari-airflow-common
-    <<: *awari-airflow-depends-on
+    <<: [*awari-airflow-common, *awari-airflow-depends-on]
     container_name: awari-airflow-scheduler
     command: scheduler
     restart: on-failure
@@ -137,8 +136,7 @@ services:
         ipv4_address: 172.18.0.111
 
   awari-airflow-webserver:
-    <<: *awari-airflow-common
-    <<: *awari-airflow-depends-on
+    <<: [*awari-airflow-common, *awari-airflow-depends-on]
     container_name: awari-airflow-webserver
     restart: always
     command: webserver
