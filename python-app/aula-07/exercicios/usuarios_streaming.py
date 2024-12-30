@@ -19,7 +19,7 @@ def save_key_to_s3(data_frame, key):
     return response
 
 # Caminho para o CSV que possui os usuários sendo carregados constantemente
-path = '/home/awari/app/aula-07/ingest/streaming/usuarios.csv'
+path = '/home/awari/app/aula-07/ingest/diferencial/usuarios.csv'
 
 # Pegamos data e hora atuais
 current_time = datetime.now()
@@ -36,7 +36,7 @@ client = boto3.client('s3',
 )
 
 # Caminhos o S3/MinIO para um arquivo chamado usuarios.csv
-key_usuarios = "usuarios/streaming/usuarios.csv"
+key_usuarios = "usuarios/diferencial/usuarios.csv"
 
 # O try Catch abaixo checa se ja existe um usuarios.csv no bucket
 # casão não exista, é feito o upload de um CSV em Branco para que possamos iniciar
